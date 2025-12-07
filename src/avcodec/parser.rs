@@ -12,7 +12,8 @@ impl AVCodecParserContext {
     pub fn init(codec_id: AVCodecID) -> Option<Self> {
         // On Windows enum is i32, On *nix enum is u32.
         // ref: https://github.com/rust-lang/rust-bindgen/issues/1361
-        #[cfg(not(windows))]
+        // When using prebuilt bindings, enums are always u32 (generated on Linux)
+        #[cfg(any(not(windows), feature = "use_prebuilt_binding"))]
         let codec_id = codec_id as i32;
         unsafe { ffi::av_parser_init(codec_id) }
             .upgrade()
