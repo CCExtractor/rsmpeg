@@ -1,6 +1,6 @@
 [package]
 name = "rsmpeg"
-version = "0.15.2+ffmpeg.7.1"
+version = "0.15.3+ffmpeg.7.1"
 authors = ["liudingming <liudingming@bytedance.com>"]
 edition = "2021"
 license = "MIT"
@@ -14,7 +14,7 @@ exclude = ["/.github", "/tests", "/utils"]
 rust-version = "1.77.0"
 
 [dependencies]
-rusty_ffmpeg = "=0.16.3"
+rusty_ffmpeg = { git = "https://github.com/CCExtractor/rusty_ffmpeg.git", default-features = false }
 paste = "1.0"
 thiserror = "2.0"
 
@@ -28,8 +28,11 @@ camino = "1.1.6"
 default = ["ffmpeg7"]
 
 # Note that ffmpeg{x} feature is designed to be addable (If it's not, compilation with all-features won't pass)
-ffmpeg6 = ["rusty_ffmpeg/ffmpeg6"]
+ffmpeg5 = ["rusty_ffmpeg/ffmpeg5"]
+ffmpeg6 = ["ffmpeg5", "rusty_ffmpeg/ffmpeg6"]
 ffmpeg7 = ["ffmpeg6", "rusty_ffmpeg/ffmpeg7"]
+ffmpeg7_1 = ["ffmpeg7", "rusty_ffmpeg/ffmpeg7_1"]
+ffmpeg8 = ["ffmpeg7_1", "rusty_ffmpeg/ffmpeg8"]
 
 # Try linking ffmpeg with pkg-config.
 link_system_ffmpeg = ["rusty_ffmpeg/link_system_ffmpeg"]
