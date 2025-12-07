@@ -24,8 +24,8 @@ anyhow = "1.0.57"
 camino = "1.1.6"
 
 [features]
-# Use FFmpeg 7 by default
-default = ["ffmpeg7"]
+# Use FFmpeg 7 by default with prebuilt bindings for consistent API
+default = ["ffmpeg7", "use_prebuilt_binding"]
 
 # Note that ffmpeg{x} feature is designed to be addable (If it's not, compilation with all-features won't pass)
 ffmpeg5 = ["rusty_ffmpeg/ffmpeg5"]
@@ -33,6 +33,9 @@ ffmpeg6 = ["ffmpeg5", "rusty_ffmpeg/ffmpeg6"]
 ffmpeg7 = ["ffmpeg6", "rusty_ffmpeg/ffmpeg7"]
 ffmpeg7_1 = ["ffmpeg7", "rusty_ffmpeg/ffmpeg7_1"]
 ffmpeg8 = ["ffmpeg7_1", "rusty_ffmpeg/ffmpeg8"]
+
+# Use prebuilt FFmpeg 7 bindings for consistent API across all platforms
+use_prebuilt_binding = ["rusty_ffmpeg/use_prebuilt_binding"]
 
 # Try linking ffmpeg with pkg-config.
 link_system_ffmpeg = ["rusty_ffmpeg/link_system_ffmpeg"]
